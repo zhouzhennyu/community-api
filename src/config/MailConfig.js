@@ -10,7 +10,7 @@ async function send(sendInfo) {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.qq.com",
+    host: 'smtp.qq.com',
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
@@ -29,7 +29,7 @@ async function send(sendInfo) {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"认证邮件 👻" <991710786@qq.com>', // sender address
+    from: '认证邮件 👻 <991710786@qq.com>', // sender address
     to: sendInfo.email, // list of receivers
     subject: sendInfo.user !== '' ? `你好开发者，${sendInfo.user}, 大前端实践注册码` : '注册码', // Subject line
     text: `你的注册码是${sendInfo.code}, 过期时间是${sendInfo.expire}`, // plain text body
@@ -46,7 +46,7 @@ async function send(sendInfo) {
 </div>`, // html body
   });
 
-  return "Message sent: %s", info.messageId
+  return 'Message sent: %s', info.messageId
 //   console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
