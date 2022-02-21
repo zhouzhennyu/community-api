@@ -45,7 +45,7 @@ class ContentController {
         if (typeof body.status !== 'undefined' && body.status !== '') {
             options.status = body.status
         }
-        if (typeof body.tags !== 'undefined' && body.tags !== '') {
+        if (typeof body.tag !== 'undefined' && body.tag !== '') {
             options.tags = { $elemMatch: { name: body.tag } }
         }
         

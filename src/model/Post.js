@@ -16,7 +16,7 @@ const PostSchema = new Schema({
     status: { type: String },	
     isTop: { type: String },	
     sort: { type: String },
-    tags: { type: Array },		
+    tags: { type: Array, default: [] },		
 })
 
 /* 
@@ -34,7 +34,7 @@ PostSchema.statics = {
             .limit(limit)
             .populate({
                 path: 'uid',
-                select: 'nickname'
+                select: 'nickname pic isVip'
             })
     }
 }
