@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import loginController from '../api/loginController.js'
+import loginController from '../api/LoginController.js'
 
 const router = new Router()
 
