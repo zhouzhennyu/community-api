@@ -27,6 +27,7 @@ const PostSchema = new Schema({
  * @param {Number} limit 分页条数
  */
 PostSchema.statics = {
+    // 获取文章列表
     getList: function(options, sort, page, limit) {
         return this.find(options)
             .sort({[sort]: -1})
@@ -36,6 +37,19 @@ PostSchema.statics = {
                 path: 'uid',
                 select: 'nickname pic isVip'
             })
+    },
+
+    // 获取本周热议
+    getTopWeek: function() {
+        return this.find({
+            created: {
+                $gte: dayjs().subtract(7, 'days')
+            }
+        }, {
+            answer: 1,
+            title: 1
+        }).sort({ answer: -1 })
+          .limit(15)
     }
 }
 

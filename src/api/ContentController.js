@@ -1,8 +1,9 @@
 import Post from '../model/Post'
-
+import Links from '../model/Links'
 class ContentController {
     constructor() {}
 
+    // 获取文章列表
     async getPostList(ctx) {
         const body = ctx.query
 
@@ -58,6 +59,35 @@ class ContentController {
         }
     }
 
+    // 获取友情链接
+    async getLinks(ctx) {
+        const result = await Links.find({ type: 'links' })
+        ctx.body = {
+            code: 200,
+            data: result,
+            message: '获取友情链接成功'
+        }
+    }
+
+    // 获取温馨提醒
+    async getTips(ctx) {
+        const result = await Links.find({ type: 'tips' })
+        ctx.body = {
+            code: 200,
+            data: result,
+            message: '获取温馨提醒成功'
+        }
+    }
+
+    // 获取本周热议
+    async getTopWeek(ctx) {
+        const result = await Post.getTopWeek()
+        ctx.body = {
+            code: 200,
+            data: result,
+            message: '获取本周热议成功'
+        }
+    }
 }
 
 export default new ContentController()
