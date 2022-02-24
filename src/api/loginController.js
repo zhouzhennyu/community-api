@@ -45,10 +45,17 @@ class LoginController {
                 checkUserPassword = true
             }
             if (checkUserPassword) {
+                const userObj = user.toJSON()
+                const arr = ['password', 'username']
+                arr.map(item => {
+                    return delete userObj[item]
+                })
+                
                 // 验证通通过，返回token
                 let token = jsonwebtoken.sign({ _id: 'zzy' }, config.JWT_SECRET, { expiresIn: '1d'})
                 ctx.body = {
                     code: 200,
+                    data: userObj,
                     token: token
                 }
             } else {
