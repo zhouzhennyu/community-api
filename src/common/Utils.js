@@ -1,4 +1,10 @@
 import { getValue } from '../config/RedisConfig'
+import config from '../config/index'
+import jwt from 'jsonwebtoken'
+
+const getJWTPayload = (token) => {
+    return jwt.verify(token.split(' ')[1], config.JWT_SECRET )
+}
 
 // 校验验证码图片时效性
 const checkCode = async (key, value) => {
@@ -16,5 +22,6 @@ const checkCode = async (key, value) => {
 }
 
 export {
-    checkCode
+    checkCode,
+    getJWTPayload
 }

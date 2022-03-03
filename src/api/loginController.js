@@ -52,7 +52,7 @@ class LoginController {
                 })
                 
                 // 验证通通过，返回token
-                let token = jsonwebtoken.sign({ _id: 'zzy' }, config.JWT_SECRET, { expiresIn: '1d'})
+                let token = jsonwebtoken.sign({ _id: userObj._id }, config.JWT_SECRET, { expiresIn: '1d'})
                 ctx.body = {
                     code: 200,
                     data: userObj,

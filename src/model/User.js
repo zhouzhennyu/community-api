@@ -38,6 +38,15 @@ UserSchema.post('save', function(error, doc, next) {
     }
 })
 
+UserSchema.statics = {
+    findByID: function(id) {
+        return this.findOne(
+            { _id: id },
+            { password: 0}
+        )
+    }
+}
+
 
 const UserModel = mongoose.model('users', UserSchema);
 
